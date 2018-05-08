@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_wheel"
+    tools:context=".activity.LuckyWheelActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:layout_alignParentBottom="true">
+
+        <com.quang.lilianachat.ui.wheelview.WheelView
+            android:id="@+id/wheelview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            app:emptyItemColor="#991717"
+            app:repeatItems="true"
+            app:rotatableWheelDrawable="true"
+            app:selectionAngle="10.0"
+            app:selectionColor="#5dba1f"
+            app:selectionPadding="4dp"
+            app:wheelDrawable="@drawable/bg_lucky_wheel"
+            app:wheelItemCount="8"
+            app:wheelItemRadius="24dp"
+            app:wheelRadius="150dp" />
+
+        <ImageView
+            android:id="@+id/img_btn_wheel"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_wheel_cursor_2" />
+    </RelativeLayout>
+
+</RelativeLayout>
