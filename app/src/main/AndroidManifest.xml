@@ -33,13 +33,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SplashActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="Login">
+
         </activity>
         <activity
             android:name=".activity.ChatActivity"
@@ -51,14 +57,16 @@
         <activity
             android:name=".activity.ListChatActivity"
             android:label="List chat" />
-        <activity android:name=".activity.GameActivity" />
+        <activity
+            android:name=".activity.GameActivity"
+            android:label="Game" />
         <activity
             android:name=".activity.LuckyWheelActivity"
             android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".activity.ChatStrangerActivity"
             android:label="Chat with stranger" />
-        <activity android:name=".activity.ChatFriendActivity"></activity>
+        <activity android:name=".activity.ChatFriendActivity" />
     </application>
 
 </manifest>

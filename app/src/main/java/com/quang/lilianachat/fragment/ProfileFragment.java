@@ -1,21 +1,31 @@
 package com.quang.lilianachat.fragment;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.facebook.Profile;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.quang.lilianachat.R;
 import com.quang.lilianachat.activity.ChatActivity;
 import com.quang.lilianachat.activity.ChatStrangerActivity;
@@ -25,6 +35,7 @@ import com.quang.lilianachat.activity.LuckyWheelActivity;
 import com.quang.lilianachat.activity.SearchActivity;
 import com.quang.lilianachat.adapter.MenuAdapter;
 import com.quang.lilianachat.model.MenuItem;
+import com.quang.lilianachat.model.UserInfo;
 
 import java.util.ArrayList;
 
@@ -36,6 +47,13 @@ public class ProfileFragment extends Fragment {
     private RecyclerView rvMenu;
     private MenuAdapter adapter;
     private ArrayList<MenuItem> listMenuItem;
+    private TextView tvAngry, tvHeart, tvStatus;
+    private AppCompatImageView imvEdit;
+    private Button btnCancel, btnSave;
+    private EditText edtStatus;
+    private Dialog dialog;
+    private DatabaseReference mRef;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -96,6 +114,68 @@ public class ProfileFragment extends Fragment {
                         startActivity(new Intent(getActivity(), GameActivity.class));
                         break;
                 }
+            }
+        });
+
+        tvHeart = view.findViewById(R.id.tvHeart);
+        tvAngry = view.findViewById(R.id.tvAngry);
+        tvStatus = view.findViewById(R.id.tvStatus);
+
+        mRef = FirebaseDatabase.getInstance().getReference("list_user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserInfo userInfo = dataSnapshot.getValue(UserInfo.class);
+                tvHeart.setText(userInfo.getHeart() + "");
+                tvAngry.setText(userInfo.getAngry() + "");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View viewDialog = inflater.inflate(R.layout.layout_dialog, null);
+        dialog = new Dialog(getContext());
+        dialog.setContentView(viewDialog);
+        dialog.setTitle("Write status");
+
+        imvEdit = view.findViewById(R.id.imvEdit);
+        imvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+            }
+        });
+
+        btnSave = dialog.findViewById(R.id.btnSave);
+        btnCancel = dialog.findViewById(R.id.btnCancel);
+        edtStatus = dialog.findViewById(R.id.edtStatus);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String status = edtStatus.getText().toString().trim();
+                mRef.child("status").setValue(status);
+                dialog.dismiss();
+            }
+        });
+        mRef.child("status").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tvStatus.setText(dataSnapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

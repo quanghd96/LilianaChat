@@ -47,8 +47,8 @@ public class ListChatActivity extends AppCompatActivity {
         RecyclerView rvListChat = findViewById(R.id.rvListChat);
         rvListChat.setLayoutManager(new LinearLayoutManager(this));
         listChat = new ArrayList<>();
-        listChat.add(new ItemChat("", "", "", "Chat nhóm", 123, "Nhấn để vào phòng"));
-        listChat.add(new ItemChat("", "", "", "Chat với người lạ", 123, "Nhấn để vào phòng"));
+        listChat.add(new ItemChat("", "", "", "Chat nhóm", 1525919731, "Nhấn để vào phòng"));
+        listChat.add(new ItemChat("", "", "", "Chat với người lạ", 1525919731, "Nhấn để vào phòng"));
         adapter = new ListChatAdapter(listChat);
         rvListChat.setAdapter(adapter);
         adapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {

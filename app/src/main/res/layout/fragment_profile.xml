@@ -30,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingStart="10dp"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/tvName"
@@ -41,12 +42,25 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:text="Tóc em là suối, mắt em là hồ. Nụ cười em là nắng để trong lòng anh ngẩn ngơ" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/imvEdit"
+                        android:maxLines="2"
+                        android:text="Tóc em là suối, mắt em là hồ. Nụ cười em là nắng để trong lòng anh ngẩn ngơ" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/imvEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        app:srcCompat="@drawable/ic_edit" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

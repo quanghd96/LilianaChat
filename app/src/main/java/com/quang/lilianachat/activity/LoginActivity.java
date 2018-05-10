@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -95,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onError(FacebookException error) {
             }
         });
-        TextView tvNotLogin = findViewById(R.id.tvNotLogin);
-        tvNotLogin.setOnClickListener(new View.OnClickListener() {
+        ImageView imvHelpLogin = findViewById(R.id.imvHelpLogin);
+        imvHelpLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -112,22 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
                 builder.setNegativeButton(R.string.notice_return, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.create();
-                if (!isFinishing()) builder.show();
-            }
-        });
-        ImageView imvHelpLogin = findViewById(R.id.imvHelpLogin);
-        imvHelpLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setMessage("");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

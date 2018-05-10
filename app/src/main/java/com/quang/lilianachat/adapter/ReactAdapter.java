@@ -36,6 +36,7 @@ public class ReactAdapter extends RecyclerView.Adapter<ReactAdapter.ViewHolder> 
         holder.tvAngry.setText(listUser.get(position).getAngry() + "");
         Glide.with(holder.itemView).load(R.drawable.heart).into(holder.imvHeart);
         Glide.with(holder.itemView).load(R.drawable.angry).into(holder.imvAngry);
+        Glide.with(holder.itemView).load("https://graph.facebook.com/" + listUser.get(position).getIdFacebook() + "/picture?type=large").into(holder.imvAvatar);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ReactAdapter extends RecyclerView.Adapter<ReactAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvHeart, tvAngry;
-        ImageView imvHeart, imvAngry;
+        ImageView imvHeart, imvAngry, imvAvatar;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -55,6 +56,7 @@ public class ReactAdapter extends RecyclerView.Adapter<ReactAdapter.ViewHolder> 
             tvAngry = itemView.findViewById(R.id.tvAngry);
             imvHeart = itemView.findViewById(R.id.imvHeart);
             imvAngry = itemView.findViewById(R.id.imvAngry);
+            imvAvatar = itemView.findViewById(R.id.imvAvatar);
         }
     }
 }

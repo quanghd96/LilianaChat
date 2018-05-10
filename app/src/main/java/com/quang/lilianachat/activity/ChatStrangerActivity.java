@@ -42,6 +42,7 @@ public class ChatStrangerActivity extends AppCompatActivity {
     private FloatingActionButton btnBottom;
     private RecyclerView rvMessage;
     private ArrayList<Message> listMessage;
+    private ArrayList<String> listKey;
     private LinearLayoutManager layoutManager;
     private MessageStrangerAdapter adapter;
 
@@ -59,10 +60,15 @@ public class ChatStrangerActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         curUser = FirebaseAuth.getInstance().getCurrentUser();
-        database.getReference("chat_stranger").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        mRef = database.getReference("chat_stranger").child(curUser.getUid());
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                progressBar.setVisibility(View.INVISIBLE);
+                if (!dataSnapshot.exists()) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -70,7 +76,7 @@ public class ChatStrangerActivity extends AppCompatActivity {
 
             }
         });
-        mRef = database.getReference("chat_stranger").child(curUser.getUid());
+
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -168,6 +174,7 @@ public class ChatStrangerActivity extends AppCompatActivity {
         btnBottom = findViewById(R.id.btnBottom);
         adapter = new MessageStrangerAdapter(listMessage);
         rvMessage.setAdapter(adapter);
+        listKey = new ArrayList<>();
     }
 
     @Override

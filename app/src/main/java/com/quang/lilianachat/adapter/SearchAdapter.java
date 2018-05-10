@@ -38,7 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.tvStatus.setText(listUser.get(position).getStatus());
         Glide
                 .with(holder.itemView)
-                .load("https://graph.facebook.com/" + listUser.get(position).getIdFacebook() + "/picture")
+                .load("https://graph.facebook.com/" + listUser.get(position).getIdFacebook() + "/picture?type=large")
                 .into(holder.imvAvatar);
         holder.btnChatNow.setOnClickListener(new View.OnClickListener() {
             @Override
