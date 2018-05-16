@@ -19,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ViewHolder> {
 
     private ArrayList<ItemChat> listChat;
-    private MenuAdapter.OnItemClickListener mItemClickListener;
+    private OnItemClickListener mItemClickListener;
 
     public ListChatAdapter(ArrayList<ItemChat> listChat) {
         this.listChat = listChat;
@@ -78,7 +78,7 @@ public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ViewHo
         void onItemClick(View view, int position);
     }
 
-    public void setOnItemClickListener(MenuAdapter.OnItemClickListener mItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 }

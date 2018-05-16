@@ -32,12 +32,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/edtMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/btnImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_image"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/edtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/btnImage"
                 android:layout_toStartOf="@+id/btnSend"
                 android:hint="Write message..."
                 android:inputType="textCapSentences" />

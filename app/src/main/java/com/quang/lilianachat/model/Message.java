@@ -6,16 +6,27 @@ public class Message {
     private String linkAvatar;
     private long timeSend;
     private String message;
+    private String image;
 
     public Message() {
     }
 
-    public Message(String name, String idFirebase, String linkAvatar, long timeSend, String message) {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Message(String name, String idFirebase, String linkAvatar, long timeSend, String message, String image) {
+
         this.name = name;
         this.idFirebase = idFirebase;
         this.linkAvatar = linkAvatar;
         this.timeSend = timeSend;
         this.message = message;
+        this.image = image;
     }
 
     public String getName() {

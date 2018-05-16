@@ -11,14 +11,10 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quang.lilianachat.R;
 import com.quang.lilianachat.adapter.ListChatAdapter;
-import com.quang.lilianachat.adapter.MenuAdapter;
 import com.quang.lilianachat.model.ItemChat;
 
 import java.util.ArrayList;
@@ -51,7 +47,7 @@ public class ListChatActivity extends AppCompatActivity {
         listChat.add(new ItemChat("", "", "", "Chat với người lạ", 1525919731, "Nhấn để vào phòng"));
         adapter = new ListChatAdapter(listChat);
         rvListChat.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new ListChatAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 if (position == 0) {
@@ -67,41 +63,9 @@ public class ListChatActivity extends AppCompatActivity {
                 }
             }
         });
-        mRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.getKey().contains(curUser.getUid())) {
-                    ItemChat itemChat = dataSnapshot.getValue(ItemChat.class);
-                    itemChat.setIdFacebook(itemChat.getIcon()
-                            .replace("https://graph.facebook.com/", "")
-                            .replace("/picture", "")
-                    );
-                    itemChat.setIdFirebase(dataSnapshot.getKey().replace(curUser.getUid(), ""));
-                    listChat.add(itemChat);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        listChat.add(new ItemChat("PfV7P4t1XYfhK7EmKGdXkAVlMzx1", "100009817420838", "https://graph.facebook.com/100009817420838/picture?type=large", "Nhai Vu", 152648996, "Hi"));
+        listChat.add(new ItemChat("ndkBdCEcfHcj9BFwhfy0dn3alGw1", "2087542758202038", "https://graph.facebook.com/2087542758202038/picture?type=large", "Quảng Đặng Ngọc", 1526489962, "Okay"));
+        adapter.notifyDataSetChanged();
     }
 
     @Override
