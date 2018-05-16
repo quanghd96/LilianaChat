@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser curUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (curUser.getUid().equals("3M2y8ol0GeMo62AHS54047thxyU2")) {
+        if (curUser.getUid().equals("JqQye7MZ6RMgkLoj5JozCg13rup1")) {
             FirebaseDatabase.getInstance().getReference("list_user").child(curUser.getUid()).child("pendingStranger").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

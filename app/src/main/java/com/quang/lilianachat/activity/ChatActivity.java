@@ -246,9 +246,9 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE) {
-            final Bundle extras = data.getExtras();
-            if (extras != null) {
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+            if (data.getExtras() != null) {
+                final Bundle extras = data.getExtras();
                 //Get image
                 Bitmap newProfilePic = extras.getParcelable("data");
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
