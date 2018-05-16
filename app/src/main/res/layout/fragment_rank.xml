@@ -70,11 +70,11 @@
 
                 <ImageView
                     android:id="@+id/imvStranger"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    app:srcCompat="@drawable/ic_person" />
+                    app:srcCompat="@drawable/ic_add" />
 
                 <TextView
                     android:id="@+id/tvStranger"
